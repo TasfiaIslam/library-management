@@ -1,0 +1,107 @@
+{% extends 'library/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Member:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Member</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" 
+			href="{% url 'order_book' member.id %}">Place Order</a>
+			<a class="btn btn-outline-info  btn-sm btn-block" 
+			href="{% url 'rent_book' member.id %}">Rent Book</a>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email: {{member.email}}</p>
+			<p>Phone: {{member.phone}}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Orders</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
+		</div>
+	</div>
+</div>
+
+<h5>Filter Orders</h5>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+                {{orderFilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>	
+</div>
+
+<br>
+<h2>Book Orders</h2>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Book</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+				{% for order in orders %}
+				<tr>
+					<td>{{order.book}}</td>
+					<td>{{order.order_date}}</td>
+					<td>{{order.status}}</td>
+					<td><a class="btn btn-sm btn-info" 
+						href="{% url 'update_order' order.id %}">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" 
+						href="{% url 'delete_order' order.id %}">Delete</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+<h2>Book Rents</h2>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Book</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+				{% for rent in rents %}
+				<tr>
+					<td>{{rent.book}}</td>
+					<td>{{rent.rental_date}}</td>
+					<td>{{rent.status}}</td>
+					<td><a class="btn btn-sm btn-info" 
+						href="">Update</a></td>
+					<td><a class="btn btn-sm btn-danger" 
+						href="">Delete</a></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

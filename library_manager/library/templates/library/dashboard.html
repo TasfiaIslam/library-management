@@ -1,0 +1,66 @@
+{% extends 'library/main.html' %}
+
+{% block content %}
+{% include 'library/status.html' %}
+{% csrf_token %}
+  <br>
+  <div class="row">
+    <div class="col-md-5">
+      <h5>MEMBERS:</h5>
+      <hr>
+      <div class="card card-body">
+        <table class="table table-sm">
+          <tr>
+            <th></th>
+            <th>Member</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Membership Date</th>
+            <th>Age</th>
+          </tr>
+          {% for member in members %}
+              <tr>
+              <td><a class="btn btn-sm btn-info" 
+                  href="{% url 'member' member.id %}">View</a></td>		
+              <td>{{member.name}}</td>
+              <td>{{member.phone}}</td>	
+              <td>{{member.email}}</td>
+              <td>{{member.date_of_membership}}</td>	
+              <td>{{member.age}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <h5>Orders:</h5>
+      <hr>
+      <div class="card card-body">
+        <table class="table table-sm">
+          <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Book</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+          {% for order in orders %}
+              <tr>		
+              <td>{{order.id}}</td>
+              <td>{{order.member.name}}</td>
+              <td>{{order.book.name}}</td>	           
+              <td>{{order.order_date}}</td>		
+              <td>{{order.status}}</td>
+              <td><a class="btn btn-sm btn-info" 
+                href="{% url 'update_order' order.id %}">Update</a></td>
+             <td><a class="btn btn-sm btn-danger" 
+                href="{% url 'delete_order' order.id %}">Delete</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+</div>
+{% endblock %}

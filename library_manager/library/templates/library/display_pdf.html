@@ -1,0 +1,26 @@
+{% extends 'library/main.html' %}
+
+{% block content %}
+
+<div class="col-sm-7">
+    <h5>BOOKS:</h5>
+    <hr>
+    <div class="card card-body" style="border: darkblue 1px solid; background-color:lightcoral;">
+        <table class="table table-sm">
+          <tr>
+            <th>Sl.No</th>
+            <th>Title</th>
+            <th>Download Pdf</th>
+          </tr>
+         {% for book in books %}
+         <tr>	
+             <td>{{book.id}}</td>	
+             <td>{{book.name}}</td>	
+             <td><a href="{{book.pdf.url}}" download>{{book.pdf}}</a></td>	
+         </tr>
+         {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

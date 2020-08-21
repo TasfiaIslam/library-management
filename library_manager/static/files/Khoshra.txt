@@ -1,0 +1,39 @@
+Library Management System
+
+1. Users 
+2. Books
+3. Authors
+4. Sections
+5. Staffs
+
+6. Members can issue book
+7. Sorting in books by genre, author, name
+8. Add new books
+9. Update books
+10. Remove books
+11. Add new Members 
+12. Update Members 
+13. Remove Members 
+14. Promote Members to VIP 
+15. User registration
+16. User Login
+17. User restriction according to type (VIP or not) 
+18. Admin/Staff approval of issuing book.
+
+
+Book :
+id, name, author, genre, description,  ageGroup, date_published, date_kept, bookCopies
+
+Members : 
+id, name, phone, email, date_of_membership, age
+
+BookIssue : 
+id, status, issue_date, return_date, 
+
+
+Works done so far:
+1. Book, Member, BookOrder, BookRent models created
+2. Create, Update, Delete book
+3. Create Member
+4. Order Book, Rent Book 
+

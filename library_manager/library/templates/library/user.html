@@ -1,0 +1,51 @@
+{% extends 'library/main.html' %}
+
+{% block content %}
+
+{% include 'library/status.html' %}
+<br>
+<h2>Book Orders</h2>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Book</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+				</tr>
+				{% for order in orders %}
+				<tr>
+					<td>{{order.book}}</td>
+					<td>{{order.order_date}}</td>
+					<td>{{order.status}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+<h2>Book Rents</h2>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Book</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+				</tr>
+				{% for rent in rents %}
+				<tr>
+					<td>{{rent.book}}</td>
+					<td>{{rent.rental_date}}</td>
+					<td>{{rent.status}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

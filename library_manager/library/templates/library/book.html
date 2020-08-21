@@ -1,0 +1,61 @@
+{% extends 'library/main.html' %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="{% url 'create_book' %}" class="btn btn-primary">Add Books</a>
+      <a href="{% url 'create_member' %}" class="btn btn-primary">Add Members</a>
+    </div>
+</div>
+<hr>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+                {{myFilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>	
+</div>
+<br>
+
+<div class="col-md-9">
+    <h5>BOOKS:</h5>
+    <hr>
+    <div class="card card-body">
+        <table class="table table-sm">
+          <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Age Group</th>
+            <th>Book Copies</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+         {% for book in books %}
+         <tr>	
+             <td>{{book.id}}</td>	
+             <td>{{book.name}}</td>
+             <td>{{book.description}}</td>	
+             <td>{{book.author}}</td>
+             <td>{{book.genre}}</td>	
+             <td>{{book.ageGroup}}</td>
+             <td>{{book.bookCopies}}</td>
+             <td><a class="btn btn-sm btn-info" 
+                href="{% url 'update_book' book.id %}">Update</a></td>
+             <td><a class="btn btn-sm btn-danger" 
+                href="{% url 'delete_book' book.id %}">Delete</a></td>			
+         </tr>
+         {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
