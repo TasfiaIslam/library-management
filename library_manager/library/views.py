@@ -17,24 +17,25 @@ from django.contrib import messages
 
 # Create your views here.
 
-@unauthenticated_user
+# @unauthenticated_user
 def registerPage(request):
- 
+
     form = CreateUserForm()
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')           
+            username = form.cleaned_data.get('username')
 
             messages.success(request, 'Account was created for '+username)
-            return redirect('login')           
+            return redirect('login')
 
     context = {'form': form}
     return render(request, 'library/register.html', context)
-    
-@unauthenticated_user
+
+
+# @unauthenticated_user
 def loginPage(request):
 
     if request.method == 'POST':
@@ -52,12 +53,14 @@ def loginPage(request):
     context = {}
     return render(request, 'library/login.html', context)
 
+
 def logoutUser(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['member'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['member'])
 def userPage(request):
     orders = request.user.member.bookorder_set.all()
 
@@ -65,13 +68,13 @@ def userPage(request):
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
 
-    context = {'orders':orders, 'total_orders': total_orders, 
-                'delivered': delivered, 'pending': pending}
+    context = {'orders': orders, 'total_orders': total_orders,
+               'delivered': delivered, 'pending': pending}
     return render(request, 'library/user.html', context)
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['member'])
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['member'])
 def accountSettings(request):
     member = request.user.member
     form = MemberForm(instance=member)
@@ -80,31 +83,31 @@ def accountSettings(request):
         form = MemberForm(request.POST, request.FILES, instance=member)
         if form.is_valid():
             form.save()
-    
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'library/account_settings.html', context)
 
-@login_required(login_url='login')
-@admin_only
+
+# @login_required(login_url='login')
+# @admin_only
 def home(request):
     books = Book.objects.all()
     members = Member.objects.all()
     orders = BookOrder.objects.all()
-
 
     total_orders = orders.count()
     delivered = orders.filter(status='Delivered').count()
     pending = orders.filter(status='Pending').count()
 
     context = {'books': books, 'members': members, 'orders': orders,
-                'total_orders': total_orders, 'delivered': delivered,
-                 'pending': pending}
+               'total_orders': total_orders, 'delivered': delivered,
+               'pending': pending}
 
     return render(request, 'library/dashboard.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def displayBooks(request):
     books = Book.objects.all()
 
@@ -114,8 +117,9 @@ def displayBooks(request):
     context = {'books': books, 'myFilter': myFilter}
     return render(request, 'library/book.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def createBook(request):
     form = BookForm()
 
@@ -124,12 +128,13 @@ def createBook(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    
+
     context = {'form': form}
     return render(request, 'library/book_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def updateBook(request, pk):
     book = Book.objects.get(id=pk)
     form = BookForm(instance=book)
@@ -143,25 +148,27 @@ def updateBook(request, pk):
     context = {'form': form}
     return render(request, 'library/book_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def deleteBook(request, pk):
     book = Book.objects.get(id=pk)
 
     if request.method == 'POST':
         book.delete()
         return redirect('/')
-    
+
     context = {'item': book}
     return render(request, 'library/book_delete.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def orderBook(request, pk):
 
     OrderFormSet = inlineformset_factory(
         Member, BookOrder, fields=('book', 'status', 'order_date'))
-    
+
     member = Member.objects.get(id=pk)
     formset = OrderFormSet(queryset=BookOrder.objects.none(), instance=member)
 
@@ -174,8 +181,9 @@ def orderBook(request, pk):
     context = {'formset': formset}
     return render(request, 'library/order_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def updateOrder(request, pk):
     order = BookOrder.objects.get(id=pk)
     formset = OrderForm(instance=order)
@@ -186,11 +194,12 @@ def updateOrder(request, pk):
             formset.save()
             return redirect('/')
 
-    context = {'formset':formset}
+    context = {'formset': formset}
     return render(request, 'library/order_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def deleteOrder(request, pk):
     order = BookOrder.objects.get(id=pk)
 
@@ -201,13 +210,14 @@ def deleteOrder(request, pk):
     context = {'item': order}
     return render(request, 'library/order_delete.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def rentBook(request, pk):
 
     RentFormSet = inlineformset_factory(
         Member, BookRent, fields=('book', 'status', 'rental_date'))
-    
+
     member = Member.objects.get(id=pk)
     formset = RentFormSet(queryset=BookRent.objects.none(), instance=member)
 
@@ -216,12 +226,13 @@ def rentBook(request, pk):
         if formset.is_valid():
             formset.save()
             return redirect('/')
-    
-    context = {'formset':formset}
+
+    context = {'formset': formset}
     return render(request, 'library/rent_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def member(request, pk):
     member = Member.objects.get(id=pk)
 
@@ -233,14 +244,15 @@ def member(request, pk):
     orderFilter = OrderFilter(request.GET, queryset=orders)
     orders = orderFilter.qs
 
-    context = {'member': member, 'orders': orders, 
-                'order_count':order_count, 'rents':rents, 
-                'orderFilter': orderFilter}
+    context = {'member': member, 'orders': orders,
+               'order_count': order_count, 'rents': rents,
+               'orderFilter': orderFilter}
 
     return render(request, 'library/member.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def createMember(request):
     form = MemberForm()
 
@@ -249,12 +261,13 @@ def createMember(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    
+
     context = {'form': form}
     return render(request, 'library/member_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def uploadPdf(request):
     form = BookPdfForm()
 
@@ -267,11 +280,11 @@ def uploadPdf(request):
     context = {'form': form}
     return render(request, 'library/pdf_form.html', context)
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['admin', 'staff'])
+
+# @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin', 'staff'])
 def displayPdf(request):
     books = BookPDF.objects.all()
 
-    context = {'books':books}
+    context = {'books': books}
     return render(request, 'library/display_pdf.html', context)
-

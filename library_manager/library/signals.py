@@ -4,16 +4,18 @@ from django.contrib.auth.models import Group
 
 from .models import Member
 
+
 def member_profile(sender, instance, created, **kwargs):
     if created:
-        group = Group.objects.get(name='member')
-        instance.groups.add(group)
+        # group = Group.objects.get(name='member')
+        # instance.groups.add(group)
 
         Member.objects.create(
             user=instance,
             name=instance.username,
-            )
-        
+        )
+
         print('Profile is created')
+
 
 post_save.connect(member_profile, sender=User)
