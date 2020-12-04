@@ -8,9 +8,23 @@ from .models import Book, Member, BookOrder, BookRent, BookPDF
 
 
 class BookForm(ModelForm):
+
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ['name', 'description', 'author', 'genre', 'ageGroup',
+                  'bookCopies', 'date_published', 'date_of_keeping']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Book Name'}),
+            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Description'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Author'}),
+            'genre': forms.Select(attrs={'class': 'form-control'}),
+            'ageGroup': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Age Group'}),
+            'bookCopies': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Book Copies'}),
+
+            'date_published': forms.DateTimeInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+            'date_of_keeping': forms.DateTimeInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+        }
 
 
 class BookPdfForm(ModelForm):

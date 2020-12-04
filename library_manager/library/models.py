@@ -39,9 +39,9 @@ class Book(models.Model):
     bookCopies = models.CharField(max_length=200, null=True)
 
     date_published = models.DateTimeField(
-        auto_now=True, max_length=200, null=True)
+        auto_now=False, max_length=200, null=True)
     date_of_keeping = models.DateTimeField(
-        auto_now=True, max_length=200, null=True)
+        auto_now=False, max_length=200, null=True)
 
     def __str__(self):
         return self.name
