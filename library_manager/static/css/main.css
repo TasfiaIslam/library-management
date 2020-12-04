@@ -1,16 +1,15 @@
-
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: brown;
-  color: black(158, 157, 157);
+  /* background-color: brown;
+  color: black(158, 157, 157); */
   text-align: center;
   font-size: 16px;
 }
 
-table, td, th {
+/* table, td, th {
  border: 3px solid black;
  padding: 0.5rem;
 }
@@ -23,21 +22,20 @@ td, th {
 th {
   background-color: rgb(90, 83, 83);
   color: white;
+} */
+
+body {
+  background-color: white;
 }
 
-body{
- background-color: white;
-}
-
-
-#total-issues{
+/* #total-issues {
   background-color: gray;
 }
 
-#total-returned{
+#total-returned {
   background-color: gray;
 }
-  
-#books-pending{
+
+#books-pending {
   background-color: gray;
-}
+} */
