@@ -6,31 +6,41 @@ from django import forms
 
 from .models import Book, Member, BookOrder, BookRent, BookPDF
 
+
 class BookForm(ModelForm):
     class Meta:
         model = Book
         fields = '__all__'
+
 
 class BookPdfForm(ModelForm):
     class Meta:
         model = BookPDF
         fields = '__all__'
 
+
 class OrderForm(ModelForm):
     class Meta:
         model = BookOrder
         fields = '__all__'
+
 
 class RentForm(ModelForm):
     class Meta:
         model = BookRent
         fields = '__all__'
 
+
 class MemberForm(ModelForm):
     class Meta:
         model = Member
-        fields = '__all__'
-        exclude = ['user']
+        fields = ['name', 'email', 'phone',
+                  'date_of_membership', 'age', 'profile_pic']
+        # exclude = ['user']
+        widgets = {
+            'date_of_membership': forms.DateTimeInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+        }
+
 
 class CreateUserForm(UserCreationForm):
     class Meta:
