@@ -38,7 +38,12 @@ class MemberForm(ModelForm):
                   'date_of_membership', 'age', 'profile_pic']
         # exclude = ['user']
         widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Phone Number'}),
+            'age': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Age'}),
             'date_of_membership': forms.DateTimeInput(format=('%m/%d/%Y'), attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+            'profile_pic': forms.FileInput(),
         }
 
 
