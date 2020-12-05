@@ -31,12 +31,20 @@ class BookPdfForm(ModelForm):
     class Meta:
         model = BookPDF
         fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Book Name'}),
+            'pdf': forms.FileInput(),
+        }
 
 
 class OrderForm(ModelForm):
     class Meta:
         model = BookOrder
         fields = '__all__'
+        # widgets = {
+        #     'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Book Name'}),
+        #     'pdf': forms.FileInput(),
+        # }
 
 
 class RentForm(ModelForm):
