@@ -5,7 +5,6 @@ A functional library manager implemented with Django `3.0.0`
 ## Getting Started
 
 ```bash
-# You may want to change the name `projectname`.
 $ git clone https://github.com/TasfiaIslam/library-management.git
 $ cd library_manager
 $ python manage.py migrate
