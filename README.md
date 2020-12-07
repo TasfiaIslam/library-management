@@ -26,6 +26,10 @@ $ python manage.py runserver
 
 ![dashboard](screenshots/dashboard.png)
 
+### Member Page
+
+![dashboard](screenshots/member_dashboard.png)
+
 ### Add Member
 
 ![Form](screenshots/add_member.png)

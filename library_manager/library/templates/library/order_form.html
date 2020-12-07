@@ -3,15 +3,23 @@
 
 {% block content %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ formset.management_form }}
-    {% for form in formset %}
-        {{form.label}}
-        {{form}}
-        <hr>
-    {% endfor %}
-    <input type="submit" name="submit">
-</form>
+<div class="row justify-content-center py-3">
+    <h2 class="text-success">Order Books</h2>
+</div>
+<div class="row justify-content-center">
+    <div class="form-group col-md-6">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+            {{form.label}}
+            {{form}}
+            <hr>
+            {% endfor %}
+            <input type="submit" name="submit">
+        </form>
+    </div>
+</div>
+
 
 {% endblock %}

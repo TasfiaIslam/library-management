@@ -57,7 +57,7 @@ class BookOrder(models.Model):
     member = models.ForeignKey(Member, null=True, on_delete=models.SET_NULL)
     book = models.ForeignKey(Book, null=True, on_delete=models.SET_NULL)
 
-    order_date = models.DateTimeField(auto_now=True, null=True)
+    order_date = models.DateTimeField(auto_now=False, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
 
     def __str__(self):
