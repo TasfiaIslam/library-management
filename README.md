@@ -19,6 +19,7 @@ $ python manage.py runserver
 - CRUD Books, Memebers, Orders, Rents
 - Upload, Download Pdfs
 - Sorting of Orders
+- Fine Calculation for isssued books
 
 ## Quick Glance
 
@@ -28,7 +29,9 @@ $ python manage.py runserver
 
 ### Member Page
 
-![dashboard](screenshots/member_dashboard.png)
+![member dashboard](screenshots/member_dashboard.png)
+
+![fine calculation](screenshots/member_dashboard_2.png)
 
 ### Add Member
 
