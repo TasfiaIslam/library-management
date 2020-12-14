@@ -1,4 +1,9 @@
 <br>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
 <div class="row">
 	<div class="col">
@@ -6,6 +11,7 @@
 			<div class="card text-center mb-3 text-white bg-primary" id="total-issues">
 				<div class="card-header">
 					<h5 class="card-title">Total Orders</h5>
+					<span><i class="fas fa-book"></i></span>
 				</div>
 				<div class="card-body">
 					<h3 class="card-title">{{total_orders}}</h3>
@@ -19,6 +25,7 @@
 			<div class="card text-center text-white bg-dark mb-3" id="total-returned">
 				<div class="card-header">
 					<h5 class="card-title">Books Delivered</h5>
+					<span><i class="fa fa-check"></i></span>
 				</div>
 				<div class="card-body">
 					<h3 class="card-title">{{delivered}}</h3>
@@ -32,6 +39,7 @@
 			<div class="card text-center text-white bg-warning mb-3" id="books-pending">
 				<div class="card-header">
 					<h5 class="card-title">Orders Pending</h5>
+					<span><i class="fas fa-tasks"></i></span>
 				</div>
 				<div class="card-body">
 					<h3 class="card-title">{{pending}}</h3>
