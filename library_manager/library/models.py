@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from datetime import date
 # Create your models here.
 
 
@@ -74,11 +75,18 @@ class BookRent(models.Model):
     member = models.ForeignKey(Member, null=True, on_delete=models.SET_NULL)
     book = models.ForeignKey(Book, null=True, on_delete=models.SET_NULL)
 
-    rental_date = models.DateTimeField()
-    #return_date = models.DateTimeField(null=True, blank=True)
-
-    #fine = models.FloatField(null=True, blank=True)
+    rental_date = models.DateField()
+    return_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
+
+    def calculate_fine(self):
+        days = (date.today()-self.rental_date)
+        d = days.days
+        fine = 0
+        if d > 15:
+            day = d - 15
+            fine = day * 10
+        return fine
 
     def __str__(self):
         return self.book.name

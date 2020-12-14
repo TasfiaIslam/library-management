@@ -79,8 +79,10 @@
 			<table class="table table-sm table-hover table-striped table-bordered">
 				<tr class="table-primary">
 					<th>Book</th>
-					<th>Date Orderd</th>
+					<th>Rental Date</th>
+					<th>Return Date</th>
 					<th>Status</th>
+					<th>Fine</th>
 					<th>Update</th>
 					<th>Remove</th>
 				</tr>
@@ -88,7 +90,9 @@
 				<tr>
 					<td>{{rent.book}}</td>
 					<td>{{rent.rental_date}}</td>
+					<td>{{rent.return_date}}</td>
 					<td>{{rent.status}}</td>
+					<td>{{rent.calculate_fine}}</td>
 					<td><a class="btn btn-sm btn-info" href="">Update</a></td>
 					<td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
 				</tr>

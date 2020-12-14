@@ -14,6 +14,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib import messages
 
+from datetime import date
+
 
 # Create your views here.
 
@@ -216,7 +218,7 @@ def deleteOrder(request, pk):
 def rentBook(request, pk):
 
     RentFormSet = inlineformset_factory(
-        Member, BookRent, fields=('book', 'status', 'rental_date'))
+        Member, BookRent, fields=('book', 'status', 'rental_date', 'return_date'))
 
     member = Member.objects.get(id=pk)
     formset = RentFormSet(queryset=BookRent.objects.none(), instance=member)
@@ -234,15 +236,14 @@ def rentBook(request, pk):
 # @login_required(login_url='login')
 # @allowed_users(allowed_roles=['admin', 'staff'])
 def member(request, pk):
-    member = Member.objects.get(id=pk)
 
+    member = Member.objects.get(id=pk)
     orders = member.bookorder_set.all()
     order_count = orders.count()
-
-    rents = member.bookrent_set.all()
-
     orderFilter = OrderFilter(request.GET, queryset=orders)
     orders = orderFilter.qs
+
+    rents = member.bookrent_set.all()
 
     context = {'member': member, 'orders': orders,
                'order_count': order_count, 'rents': rents,
