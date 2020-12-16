@@ -23,27 +23,7 @@ $ python manage.py runserver
 
 ## Quick Glance
 
-### Dashboard
-
-![dashboard](screenshots/dashboard.png)
-
-### Member Page
-
-![member dashboard](screenshots/member_dashboard.png)
-
-![fine calculation](screenshots/member_dashboard_2.png)
-
-### Add Member
-
-![Form](screenshots/add_member.png)
-
-### Upload Pdf
-
-![Form](screenshots/upload_pdf.png)
-
-### Display and Download Pdf
-
-![Form](screenshots/display_pdf.png)
+![dashboard](screenshots/library_project.gif)
 
 ## Contributing
 
